@@ -4,7 +4,7 @@ from flask import request
 from flask import jsonify
 from flask import render_template
 
-app = Flask(_name_)
+app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 
@@ -38,7 +38,7 @@ def addStudent():
         check_name = request.form['name']
         check_email = request.form['email']
         isPresent = db.session.query(db.session.query(Student).filter_by(rollnumber=check_rollnumber).exists()).scalar() \
-             and db.session.query(db.session.query(Student).filter_by(email=check_email).exists()).scalar() \ 
+             and db.session.query(db.session.query(Student).filter_by(email=check_email).exists()).scalar() \
                  and db.session.query(db.session.query(Student).filter_by(name=check_name).exists()).scalar()
         req = {'status': isPresent}
         return jsonify(req)
@@ -164,5 +164,5 @@ def deleteCourse(code):
     state = {'status': not isStillPresent}
     return jsonify(state)
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

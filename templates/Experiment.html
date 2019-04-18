@@ -98,7 +98,18 @@
 						<div class="col-md-10 lab-list-col-10">
 							
 							<!--edit -->
-<h1 class="text-h2-lightblue">Context Free Grammar</h1><div class="content" id="experiment-article-section-4-content">
+<h1 class="text-h2-lightblue">Context Free Grammar</h1>
+<div class="content" id="experiment-article-section-4-content">
+	<p><center>Select Here:
+	<select id="gksel" onchange="gkcall()">
+			<option value="0" selected disabled hidden>--Select Sentence--</option>
+			<option value="5">Sita went to the school</option>
+			<option value="4">Ram ate an apple</option>
+			</select>
+		</center></p>
+<center>	<div id="demo"></div> <div id="demo1"></div><p id="demo2"> </p></center>
+	
+				
 <div id="PHRASE_STRUCTURE_TREE"></div>
 </div>						</div>
 					</div>
@@ -149,7 +160,153 @@
 
 
 </div> <!-- top div -->
+<script>
+function setcolor(yo,z){
+	var bbt ;
+	var i=yo[z];
+	
+	//bbt=document.getElementById(i);
+	//bbt.style.background= "#7FFF00";
+};
 
+</script>
+<script>
+	var count=0;
+	var cou=0;
+	var btn;
+	var val;
+		function my(z,y0){
+			var bButton;
+bButton = document.createElement('input');
+//bButton.ID = y0[z];
+bButton.setAttribute("id",y0[z]);
+bButton.value = y0[z];
+bButton.type = 'button';
+bButton.value=y0[z];
+document.getElementById("demo").appendChild(bButton);
+bButton.onclick = function(){
+//	alert("issandeep");
+	val=y0[z];
+	if(count!=0){btn.style.backgroundColor ="#FFFFFF"}
+	count++;
+//	setcolor(y0,z);
+	bButton.style.backgroundColor = "#7FFF00";
+	btn=bButton;
+};
+//			document.getElementById("demo").innerHTML += " "
+//	  document.getElementById("demo").innerHTML += " "
+//var btton=document.getElementById(id);
+//btton.style.backgroundColor = "#7FFF00";
+
+};
+
+			
+		function gkcall() {
+		  var x = document.getElementById("gksel").value;
+		  
+		  if(x==5){
+			  y="Sita went to the school";
+		   y0=["Sita","went","to","the","school"];
+		   }
+		  if(x==4){y="Ram ate the apple";
+		  y0=["Ram","ate","an","apple"];
+		  }
+
+		  y="<br>"+"Sentence:"+y+"<br>"+"<br>"+"<br>";
+		  document.getElementById("demo").innerHTML = y;
+		  var z;
+	  for(z=0;z<x;z++){
+		my(z,y0);
+		  //document.getElementById("demo").innerHTML += " "
+			}
+
+			
+		var x1 = document.createElement("SELECT");
+  x1.setAttribute("id", "mySelect");
+ document.getElementById("demo").appendChild(x1);
+var z1;
+var t;
+
+z1 = document.createElement("option");
+  z1.setAttribute("value", 0);
+  t = document.createTextNode("---Select Chunk Name----");
+  z1.appendChild(t);
+  document.getElementById("mySelect").appendChild(z1);
+
+
+  z1 = document.createElement("option");
+  z1.setAttribute("value", 1);
+  t = document.createTextNode("S");
+  z1.appendChild(t);
+  document.getElementById("mySelect").appendChild(z1);
+
+
+  z1 = document.createElement("option");
+  z1.setAttribute("value", 2);
+  t = document.createTextNode("NP");
+  z1.appendChild(t);
+  document.getElementById("mySelect").appendChild(z1);
+
+
+  z1 = document.createElement("option");
+  z1.setAttribute("value", 3);
+  t = document.createTextNode("VP");
+  z1.appendChild(t);
+  document.getElementById("mySelect").appendChild(z1);
+
+
+  z1 = document.createElement("option");
+  z1.setAttribute("value", 4);
+  t = document.createTextNode("VP");
+  z1.appendChild(t);
+  document.getElementById("mySelect").appendChild(z1);
+
+	document.getElementById("demo1").innerHTML += "<br>";
+	document.getElementById("demo1").innerHTML += "<br>";
+	if(cou==0){
+		var bButton;
+bButton = document.createElement('input');
+//bButton.ID = "button";
+bButton.setAttribute("id","btin");
+bButton.value = "Submit";
+bButton.type = 'button';
+//bButton.value=y0[z];
+document.getElementById("demo1").append(bButton);
+bButton.onclick = function(){
+	if(x1.value==0){
+	alert("issandeep");}
+};}
+if(cou!=0){
+	var bButton=document.getElementById("btin");
+	bButton.onclick = function(){
+	if(x1.value==0){
+	alert("issandeep");}
+};	
+}
+//  document.getElementById("demo1").appendChild(btn1);
+var y1="<br>"+"<br>"+"<br>"+"Bracketing:  [S [N Ram][V ate][det an][N apple]]"+"<br>"+"<br>";
+var y2="<br>"+"<br>"+"<br>"+"Bracketing:  [S [N Sita][V went][P to][det the][N school]]"+"<br>"+"<br>";
+
+	if(x==4){
+	document.getElementById("demo2").innerHTML = y1;
+	var x6 = document.createElement("IMG");
+  x6.setAttribute("src", "../templates/images/ram.png");
+  document.getElementById("demo2").appendChild(x6);
+
+		}
+	if(x==5){
+		document.getElementById("demo2").innerHTML = y2;	
+	var x6 = document.createElement("IMG");
+  x6.setAttribute("src", "../templates/images/sita.png");
+  document.getElementById("demo2").appendChild(x6);
+	
+	}
+		
+	x1.selectedIndex = "0";
+		cou++;
+		}
+		</script>
+		
 </body>
 
 

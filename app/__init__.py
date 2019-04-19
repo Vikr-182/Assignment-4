@@ -28,43 +28,43 @@ db.create_all()
 
 
 @app.route('/')
-@app.route('/intro')
+@app.route('/Introduction.html')
 def intro():
     return render_template('Introduction.html')
 
-@app.route('/theory')
+@app.route('/Theory.html')
 def theory():
         return render_template('Theory.html')
 
-@app.route('/objective')
+@app.route('/Objective.html')
 def objective():
     return render_template('Objective.html')
 
-@app.route('/experiment')
+@app.route('/Experiment.html')
 def experiment():
     sentencesA=['EOS','I','YOU','CAN','HIM','NEAR','SIT']
     sentencesB=['EOS','YOU','BOOK','A','CAR','I','CAN', 'READ','IN','THE','PARK']
     sentencesC=['']
     return render_template('Experiment.html')
 
-@app.route('/quiz')
+@app.route('/Quizzes.html')
 def quiz():
     return render_template('Quizzes.html')
 
-@app.route('/procedure')
+@app.route('/Procedure.html')
 def procedure():
     return render_template('Procedure.html')
 
 
-@app.route('/furtherReadings')
+@app.route('/Further Readings.html')
 def furtherReadings():
     return render_template('Further Readings.html')
 
-@app.route('/feedback')
+@app.route('/Feedback.html')
 def feedback():
     return render_template('Feedback.html')
 
-@app.route('/quiz_add')
+@app.route('/Quiz_add.html')
 def quizadd():
     return render_template('Quiz_add.html')
 

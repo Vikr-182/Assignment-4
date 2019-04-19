@@ -1,51 +1,70 @@
-from flask import Flask,render_template
-from flask import jsonify
+# Import flask and template operators
+from flask import Flask, jsonify, render_template
+from flask_cors import CORS
+
+# Import SQLAlchemy
 from flask_sqlalchemy import SQLAlchemy
-from flask import request
-from flask import jsonify
-from flask import url_for
-    
+
+# Define the WSGI application object
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+CORS(app)
+
+# Configurations
+app.config.from_object('config')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# Define the database object which is imported
+# by modules and controllers
 db = SQLAlchemy(app)
-   
+
+# Import a module / component using its blueprint handler variable
+from app.quiz.controllers import mod_ques
+
+# Register blueprint(s)2
+app.register_blueprint(mod_ques)
+
+# Build the database:
+db.create_all()
 
 
-@app.route("/")
+@app.route('/')
+@app.route('/intro')
 def intro():
-    return render_template("index.html")
+    return render_template('Introduction.html')
 
-@app.route("/Introduction.html")
-def introduction():
-    return render_template("Introduction.html")
+@app.route('/theory')
+def theory():
+        return render_template('Theory.html')
 
-@app.route("/Theory.html")
-def thoery():
-    return render_template("Theory.html")
-
-@app.route("/Objective.html")
+@app.route('/objective')
 def objective():
-    return render_template("Objective.html")
+    return render_template('Objective.html')
 
-@app.route("/Experiment.html")
+@app.route('/experiment')
 def experiment():
-    return render_template("Experiment.html")
+    sentencesA=['EOS','I','YOU','CAN','HIM','NEAR','SIT']
+    sentencesB=['EOS','YOU','BOOK','A','CAR','I','CAN', 'READ','IN','THE','PARK']
+    sentencesC=['']
+    return render_template('Experiment.html')
 
-@app.route("/Procedure.html")
+@app.route('/quiz')
+def quiz():
+    return render_template('Quizzes.html')
+
+@app.route('/procedure')
 def procedure():
-    return render_template("Procedure.html")
+    return render_template('Procedure.html')
 
-@app.route("/Further Readings.html")
-def references():
-    return render_template("Further Readings.html")
 
-@app.route("/Quizzes.html")
-def quizzes():
-    return render_template("Quizzes.html")
+@app.route('/furtherReadings')
+def furtherReadings():
+    return render_template('Further Readings.html')
 
-@app.route("/Feedback.html")
+@app.route('/feedback')
 def feedback():
-    return render_template("Feedback.html")
+    return render_template('Feedback.html')
 
-if __name__ == "__main__":
-    app.run(debug=True)
+@app.route('/quiz_add')
+def quizadd():
+    return render_template('Quiz_add.html')
+
